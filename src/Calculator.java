@@ -89,9 +89,14 @@ public class Calculator implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b14) {
-            String res = evaluate(tf.getText());
-            tf.setText(res);
-            isCalculated = true;
+             try {
+                String res = evaluate(tf.getText());
+                tf.setText(res);
+                isCalculated = true;
+            } catch (ArithmeticException ex) {
+                tf.setText("Error: " + ex.getMessage());
+                isCalculated = true;
+            }
         } else if (e.getSource() == b15) {
             tf.setText("");
             isCalculated = false;
